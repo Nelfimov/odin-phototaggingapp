@@ -1,0 +1,6 @@
+.Navbar {
+  background-color: rgb(96, 96, 189);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  color: white;
+}
