@@ -1,6 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import '../styles/App.css';
+import GameContainer from './GameContainer';
 import Navbar from './Navbar';
+import ContextContainer from './ContextContainer';
+import '../styles/App.css';
+
+const CHARACTERS_LIST = [
+  {name: 'Mario'},
+  {name: 'Luigi'},
+];
 
 /**
  * Main App
@@ -16,9 +23,16 @@ const App = () => {
 
   const incrementScore = () => setScore((prevState) => prevState + 1);
 
+  const handleClick = (e) => {
+    return <ContextContainer charactersList={CHARACTERS_LIST} />;
+  };
+
   return (
     <div className="App">
       <Navbar score={score} />
+      <GameContainer
+        handleClick={handleClick}
+        incrementScore={incrementScore} />
     </div>
   );
 };
