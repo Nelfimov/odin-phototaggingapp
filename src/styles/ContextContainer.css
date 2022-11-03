@@ -1,0 +1,31 @@
+.ContextContainer {
+  background-color: white;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: repeat(3, auto);
+  position: absolute;
+  height: auto;
+  width: 100px;
+  border-radius: 10px;
+  border: 0.1px solid black;
+  box-shadow: 3px 3px 3px 3px grey;
+}
+
+.ContextContainer .hidden {
+  display: none;
+}
+
+.ContextContainer ul {
+  padding: 0;
+}
+
+.ContextContainer li {
+  padding: 10px 0;
+  list-style: none;
+  padding: 10px;
+}
+
+.ContextContainer li:hover {
+  background-color: rgb(202, 202, 202);
+  cursor: pointer;
+}
