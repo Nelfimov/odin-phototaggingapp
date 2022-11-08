@@ -1,14 +1,17 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import GameContainer from './GameContainer';
 import Navbar from './Navbar';
-import {db} from '../FirebaseConfig';
+import {db} from '../Firebase';
 import {doc, getDoc} from '@firebase/firestore';
 import '../styles/App.css';
 
 const CHARACTERS_LIST = [
-  {name: 'Waldo'},
-  {name: 'Wizard'},
+  {name: 'Waldo', status: false},
+  {name: 'Yeti', status: false},
+  {name: 'Wizard', status: false},
 ];
+
+const THRESHHOLD = 0.08;
 
 const App = () => {
   const [score, setScore] = useState(0);
@@ -28,10 +31,32 @@ const App = () => {
   }, [hidden, anchor]);
 
   const handleClickInContext = useCallback(async (e) => {
-    const docRef = doc(db, 'coordinates', e.target.textContent);
+    const characterName = e.target.textContent;
+    const docRef = doc(db, 'coordinates', characterName);
     const docSnap = await getDoc(docRef);
 
-    console.log(docSnap.data());
+    const {x, y} = docSnap.data();
+    const listItem = CHARACTERS_LIST.find((item) =>
+      item.name === characterName);
+
+    const anchorX = (anchor.x / window.innerWidth).toFixed(3);
+    const anchorY = (anchor.y / window.innerHeight).toFixed(3);
+
+    console.info(`X: ${anchorX}; Y: ${anchorY}`);
+    console.warn(`X: ${parseFloat(anchorX) + parseFloat(THRESHHOLD)}; 
+    Y: ${parseFloat(anchorY) + parseFloat(THRESHHOLD)}`);
+
+    if (
+      (x < parseFloat(anchorX) + parseFloat(THRESHHOLD) &&
+       x > parseFloat(anchorX) - parseFloat(THRESHHOLD)) &&
+      (y < parseFloat(anchorY) + parseFloat(THRESHHOLD) &&
+       y > parseFloat(anchorY) - parseFloat(THRESHHOLD)) &&
+      !listItem.status
+    ) {
+      incrementScore();
+      CHARACTERS_LIST.map((item) =>
+        item.name === characterName ? item.status = true : item);
+    };
   });
 
   return (
