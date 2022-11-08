@@ -2,4 +2,5 @@
   min-height: 100vh;
   background-image: url('../images/1.jpg');
   width: 100vw;
+  cursor: url('../images/cursor.png'), auto;
 }

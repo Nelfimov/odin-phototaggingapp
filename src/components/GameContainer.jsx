@@ -12,7 +12,7 @@ import ContextContainer from './ContextContainer';
 const GameContainer = ({incrementScore, handleClick, charactersList, hidden, anchor}) => {
   return (
     <div className='GameContainer' onClick={handleClick}>
-      {hidden ? <ContextContainer charactersList={charactersList} anchor={anchor} /> : null}
+      {hidden ? null : <ContextContainer charactersList={charactersList} anchor={anchor} /> }
     </div>
   );
 };
