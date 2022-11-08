@@ -9,10 +9,22 @@ import ContextContainer from './ContextContainer';
  * @param {func} incrementScore Function to increment score
  * @return {JSX}
  */
-const GameContainer = ({incrementScore, handleClick, charactersList, hidden, anchor}) => {
+const GameContainer = ({
+  incrementScore,
+  handleClick,
+  handleClickInContext,
+  charactersList,
+  hidden,
+  anchor,
+}) => {
   return (
     <div className='GameContainer' onClick={handleClick}>
-      {hidden ? null : <ContextContainer charactersList={charactersList} anchor={anchor} /> }
+      {hidden ?
+       null :
+        <ContextContainer
+          handleClick={handleClickInContext}
+          charactersList={charactersList}
+          anchor={anchor} /> }
     </div>
   );
 };
@@ -20,6 +32,7 @@ const GameContainer = ({incrementScore, handleClick, charactersList, hidden, anc
 GameContainer.propTypes = {
   incrementScore: propTypes.func,
   handleClick: propTypes.func,
+  handleClickInContext: propTypes.func,
   charactersList: propTypes.arrayOf(propTypes.shape),
   hidden: propTypes.bool,
   anchor: propTypes.object,

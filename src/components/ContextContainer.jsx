@@ -7,14 +7,14 @@ import '../styles/ContextContainer.css';
  * @param {Array.<Object>} charactersList array of characters to find
  * @return {JSX} JSX
  */
-const ContextContainer = ({charactersList, hidden, anchor}) => {
+const ContextContainer = ({charactersList, hidden, handleClick, anchor}) => {
   return (
     <div
       style={{top: anchor.y, left: anchor.x}}
       className='ContextContainer'>
       <ul>
         {charactersList.map((item) =>
-          <li key={item.name}>
+          <li key={item.name} onClick={handleClick}>
             {item.name}
           </li> )}
       </ul>
@@ -24,6 +24,7 @@ const ContextContainer = ({charactersList, hidden, anchor}) => {
 
 ContextContainer.propTypes = {
   charactersList: propTypes.arrayOf(propTypes.shape),
+  handleClick: propTypes.func,
   hidden: propTypes.bool,
   anchor: propTypes.object,
 };
