@@ -1,4 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
+import Finish from './Finish';
 import GameContainer from './GameContainer';
 import Navbar from './Navbar';
 import {db} from '../Firebase';
@@ -18,12 +19,15 @@ const App = () => {
   const [isWin, setIsWin] = useState(false);
   const [hidden, setHidden] = useState(true);
   const [anchor, setAnchor] = useState({x: 0, y: 0});
+  const [finalTime, setFinalTime] = useState();
 
   useEffect(() => {
     setIsWin(score === 3 ? !isWin : isWin);
   }, [score]);
 
   const incrementScore = () => setScore((prevState) => prevState + 1);
+
+  const getTime = (time) => setFinalTime(time);
 
   const handleClick = useCallback((e) => {
     setHidden(!hidden);
@@ -61,15 +65,19 @@ const App = () => {
 
   return (
     <div className="App">
-      <Navbar score={score} />
-      <GameContainer
-        handleClick={handleClick}
-        handleClickInContext={handleClickInContext}
-        incrementScore={incrementScore}
-        charactersList={CHARACTERS_LIST}
-        hidden={hidden}
-        anchor={anchor}
-      />
+      <Navbar score={score} getTime={getTime} isWin={isWin} />
+      {
+      isWin ?
+      <Finish time={finalTime} /> :
+       <GameContainer
+         handleClick={handleClick}
+         handleClickInContext={handleClickInContext}
+         incrementScore={incrementScore}
+         charactersList={CHARACTERS_LIST}
+         hidden={hidden}
+         anchor={anchor}
+       />
+      }
     </div>
   );
 };

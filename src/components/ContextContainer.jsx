@@ -7,7 +7,7 @@ import '../styles/ContextContainer.css';
  * @param {Array.<Object>} charactersList array of characters to find
  * @return {JSX} JSX
  */
-const ContextContainer = ({charactersList, hidden, handleClick, anchor}) => {
+const ContextContainer = ({charactersList, handleClick, anchor}) => {
   return (
     <div
       style={{top: anchor.y, left: anchor.x}}

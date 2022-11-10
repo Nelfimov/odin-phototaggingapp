@@ -1,0 +1,13 @@
+.Finish {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  min-height: 80vh;
+}
+
+.Finish form {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 10px;
+}

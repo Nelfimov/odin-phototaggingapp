@@ -5,12 +5,14 @@ import '../styles/Navbar.css';
 /**
  * Navbar
  * @param {Number} score
+ * @param {func} getTime
  * @return {JSX}
  */
-const Navbar = ({score}) => {
+const Navbar = ({score, getTime, isWin}) => {
   const [timer, setTimer] = useState(0);
 
   useEffect(() => {
+    if (isWin) return;
     const updateTimer = setTimeout(() => {
       setTimer((prevState) => prevState + 1);
     }, 1000);
@@ -19,11 +21,17 @@ const Navbar = ({score}) => {
     };
   }, [timer]);
 
+  useEffect(() => {
+    score === 3 && getTime(timer);
+  }, [score]);
+
   return (
     <div className='Navbar'>
       <h1 className='title'>WHERE IS WALDO</h1>
       <div className='mid'>
-        <h1>{timer} seconds</h1>
+        {isWin ?
+        <h1></h1> :
+        <h1>{timer} seconds</h1>}
         <h2>Found: {score}/3</h2>
       </div>
       <ul>
@@ -36,6 +44,8 @@ const Navbar = ({score}) => {
 
 Navbar.propTypes = {
   score: propTypes.number,
+  getTime: propTypes.func,
+  isWin: propTypes.bool,
 };
 
 export default Navbar;
