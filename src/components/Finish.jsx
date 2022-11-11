@@ -6,7 +6,7 @@ import {db} from '../Firebase';
 import {doc, updateDoc, arrayUnion} from '@firebase/firestore';
 import '../styles/Finish.css';
 
-const Finish = ({time}) => {
+const Finish = ({time, restartGame}) => {
   const [isSubmit, setIsSubmit] = useState(false);
 
   const inputName = useRef();
@@ -36,6 +36,7 @@ const Finish = ({time}) => {
           <label htmlFor="time">Time:</label>
           <input type="text" name="time" id="time" disabled value={time} />
           <button type='submit'>Submit</button>
+          <button type='button' onClick={restartGame}>Restart</button>
         </form>
       }
       <Leaderboard isSubmit={isSubmit}/>
@@ -45,6 +46,7 @@ const Finish = ({time}) => {
 
 Finish.propTypes = {
   time: propTypes.number,
+  restartGame: propTypes.func,
 };
 
 export default Finish;

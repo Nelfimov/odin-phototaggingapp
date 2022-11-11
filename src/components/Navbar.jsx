@@ -12,6 +12,10 @@ const Navbar = ({score, getTime, isWin}) => {
   const [timer, setTimer] = useState(0);
 
   useEffect(() => {
+    setTimer(0);
+  }, [isWin]);
+
+  useEffect(() => {
     if (isWin) return;
     const updateTimer = setTimeout(() => {
       setTimer((prevState) => prevState + 1);
@@ -24,6 +28,7 @@ const Navbar = ({score, getTime, isWin}) => {
   useEffect(() => {
     score === 3 && getTime(timer);
   }, [score]);
+
 
   return (
     <div className='Navbar'>

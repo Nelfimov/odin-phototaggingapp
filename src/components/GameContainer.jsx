@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React from 'react';
 import propTypes from 'prop-types';
 import '../styles/GameContainer.css';
@@ -10,7 +9,6 @@ import ContextContainer from './ContextContainer';
  * @return {JSX}
  */
 const GameContainer = ({
-  incrementScore,
   handleClick,
   handleClickInContext,
   charactersList,

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, {useCallback, useEffect, useState} from 'react';
 import Finish from './Finish';
 import GameContainer from './GameContainer';
@@ -5,6 +6,7 @@ import Navbar from './Navbar';
 import useNotification from './Notification/useNotification';
 import {db} from '../Firebase';
 import {doc, getDoc} from '@firebase/firestore';
+import markIcon from '../images/mark.svg';
 import '../styles/App.css';
 
 const CHARACTERS_LIST = [
@@ -29,6 +31,13 @@ const App = () => {
   }, [score]);
 
   const incrementScore = () => setScore((prevState) => prevState + 1);
+
+  const restartGame = () => {
+    setIsWin(false);
+    setScore(0);
+    setAnchor({x: 0, y: 0});
+    CHARACTERS_LIST.map((item) => item.status = false);
+  };
 
   const getTime = (time) => setFinalTime(time);
 
@@ -64,6 +73,12 @@ const App = () => {
       CHARACTERS_LIST.map((item) =>
         item.name === characterName ? item.status = true : item);
       notification.open('Great job, you found it!');
+
+      const image = document.createElement('img');
+      image.src = markIcon;
+      image.setAttribute('style',
+          `position: absolute; top: ${anchor.y}px; left: ${anchor.x}px; z-index: 7`);
+      document.querySelector('div.GameContainer').append(image);
     } else {
       notification.open('You missed, sorry!');
     };
@@ -74,7 +89,7 @@ const App = () => {
       <Navbar score={score} getTime={getTime} isWin={isWin} />
       {
       isWin ?
-      <Finish time={finalTime} /> :
+      <Finish time={finalTime} restartGame={restartGame} /> :
        <GameContainer
          handleClick={handleClick}
          handleClickInContext={handleClickInContext}
