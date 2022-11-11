@@ -1,9 +1,14 @@
 .GameContainer {
-  min-height: 100vh;
-  background-image: url('../images/1.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
+  position: absolute;
+}
+
+.GameContainer img.background {
   width: 100vw;
-  cursor: url('../images/cursor.png'), auto;
+  z-index: 0;
+}
+
+.GameContainer img.mark {
+  position: absolute;
+  width: 5%;
+  transform: translate(-50%, -50%);
 }

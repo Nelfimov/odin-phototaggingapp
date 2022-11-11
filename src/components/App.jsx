@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 import React, {useCallback, useEffect, useState} from 'react';
 import Finish from './Finish';
@@ -43,7 +44,8 @@ const App = () => {
 
   const handleClick = useCallback((e) => {
     setHidden(!hidden);
-    setAnchor({x: e.clientX, y: e.clientY});
+    const rect = e.target.getBoundingClientRect();
+    setAnchor({x: e.pageX, y: e.pageY - rect.top - window.scrollY});
   }, [hidden, anchor]);
 
   const handleClickInContext = useCallback(async (e) => {
@@ -55,12 +57,13 @@ const App = () => {
     const listItem = CHARACTERS_LIST.find((item) =>
       item.name === characterName);
 
+    const img = document.querySelector('img.background');
+    const rect = img.getBoundingClientRect();
+
     const anchorX = (anchor.x / window.innerWidth).toFixed(3);
-    const anchorY = (anchor.y / window.innerHeight).toFixed(3);
+    const anchorY = (anchor.y / img.offsetHeight).toFixed(3);
 
     console.info(`X: ${anchorX}; Y: ${anchorY}`);
-    console.warn(`X: ${parseFloat(anchorX) + parseFloat(THRESHHOLD)}; 
-    Y: ${parseFloat(anchorY) + parseFloat(THRESHHOLD)}`);
 
     if (
       (x < parseFloat(anchorX) + parseFloat(THRESHHOLD) &&
@@ -74,11 +77,12 @@ const App = () => {
         item.name === characterName ? item.status = true : item);
       notification.open('Great job, you found it!');
 
-      const image = document.createElement('img');
-      image.src = markIcon;
-      image.setAttribute('style',
-          `position: absolute; top: ${anchor.y}px; left: ${anchor.x}px; z-index: 7`);
-      document.querySelector('div.GameContainer').append(image);
+      const mark = document.createElement('img');
+      mark.src = markIcon;
+      mark.className = 'mark';
+      mark.setAttribute('style',
+          `top: ${anchorY*100}%; left: ${anchorX*100}%; z-index: 7`);
+      document.querySelector('div.GameContainer').append(mark);
     } else {
       notification.open('You missed, sorry!');
     };

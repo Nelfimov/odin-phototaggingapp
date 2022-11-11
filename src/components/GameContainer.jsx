@@ -2,6 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import '../styles/GameContainer.css';
 import ContextContainer from './ContextContainer';
+import background from '../images/1.jpg';
 
 /**
  * Container for gameboard with picture
@@ -17,6 +18,7 @@ const GameContainer = ({
 }) => {
   return (
     <div className='GameContainer' onClick={handleClick}>
+      <img src={background} alt="background" className='background' />
       {hidden ?
        null :
         <ContextContainer

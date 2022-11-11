@@ -6,9 +6,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 50px;
-  /* position: fixed;
-  right: 0;
-  left: 0; */
+  height: 5em;
+  box-sizing: border-box;
 }
 
 .Navbar .title {
@@ -38,11 +37,9 @@
 }
 
 .Navbar a {
-  padding: 2.5em 2em;
+  padding: 16px 24px;
   color: white;
-  background-color: rgb(61, 61, 253);
   text-decoration: none;
-  border-radius: 0 0 20px 20px;
 }
 
 .Navbar a:visited {
@@ -51,5 +48,32 @@
 
 .Navbar a:hover {
   color: white;
-  background-color: rgb(55, 55, 76);
+}
+
+@media only screen and (max-width: 1340px) {
+  .Navbar .title {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (max-width: 812px) {
+  .Navbar {
+    padding: 5px;
+  }
+
+  .Navbar h1 {
+    font-size: 1.4rem;
+  }
+
+  .Navbar h2 {
+    font-size: 1.2rem;
+  }
+
+  .Navbar .title {
+    font-size: 1.5rem;
+  }
+
+  .Navbar a {
+    padding: 30px 2px;
+  }
 }
