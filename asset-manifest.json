@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/odin-phototaggingapp/static/css/main.f015002d.css",
+    "main.js": "/odin-phototaggingapp/static/js/main.4faa7684.js",
+    "static/media/1.jpg": "/odin-phototaggingapp/static/media/1.80afb2b7450c2ce06eba.jpg",
+    "index.html": "/odin-phototaggingapp/index.html",
+    "static/media/mark.svg": "/odin-phototaggingapp/static/media/mark.1205147c3a2ccba636882d39c959b40b.svg",
+    "main.f015002d.css.map": "/odin-phototaggingapp/static/css/main.f015002d.css.map",
+    "main.4faa7684.js.map": "/odin-phototaggingapp/static/js/main.4faa7684.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f015002d.css",
+    "static/js/main.4faa7684.js"
+  ]
+}
