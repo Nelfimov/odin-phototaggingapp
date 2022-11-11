@@ -2,6 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import Finish from './Finish';
 import GameContainer from './GameContainer';
 import Navbar from './Navbar';
+import useNotification from './Notification/useNotification';
 import {db} from '../Firebase';
 import {doc, getDoc} from '@firebase/firestore';
 import '../styles/App.css';
@@ -20,6 +21,8 @@ const App = () => {
   const [hidden, setHidden] = useState(true);
   const [anchor, setAnchor] = useState({x: 0, y: 0});
   const [finalTime, setFinalTime] = useState();
+
+  const notification = useNotification();
 
   useEffect(() => {
     setIsWin(score === 3 ? !isWin : isWin);
@@ -60,6 +63,9 @@ const App = () => {
       incrementScore();
       CHARACTERS_LIST.map((item) =>
         item.name === characterName ? item.status = true : item);
+      notification.open('Great job, you found it!');
+    } else {
+      notification.open('You missed, sorry!');
     };
   });
 
