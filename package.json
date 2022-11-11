@@ -1,5 +1,6 @@
 {
   "name": "odin-phototaggingapp",
+  "homepage": "http://nelfimov.github.io/odin-phototaggingapp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

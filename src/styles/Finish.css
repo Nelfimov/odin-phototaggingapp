@@ -6,8 +6,49 @@
   min-height: 80vh;
 }
 
+.Finish h2 {
+  text-align: center;
+}
+
 .Finish form {
   display: flex;
   flex-flow: column wrap;
   gap: 10px;
+}
+
+.Finish form input {
+  border: .1px solid grey;
+  border-radius: 5px;
+  outline: none;
+}
+
+.Finish form label {
+  text-align: center;
+}
+
+.Finish form button {
+  background-color: rgb(96, 96, 189);
+  border-radius: 5px;
+  padding: 12px 16px;
+  color: white;
+  font-weight: bold;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+input#time {
+  text-align: center;
+  border: 0;
+}
+
+@media only screen and (max-width: 812px) {
+  .Finish {
+    margin: 10px;
+  }
+
+  .Finish ol {
+    padding-left: 10px;
+  }
 }

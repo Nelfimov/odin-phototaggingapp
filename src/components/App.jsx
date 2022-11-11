@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable max-len */
 import React, {useCallback, useEffect, useState} from 'react';
 import Finish from './Finish';
 import GameContainer from './GameContainer';
@@ -58,12 +56,11 @@ const App = () => {
       item.name === characterName);
 
     const img = document.querySelector('img.background');
-    const rect = img.getBoundingClientRect();
 
     const anchorX = (anchor.x / window.innerWidth).toFixed(3);
     const anchorY = (anchor.y / img.offsetHeight).toFixed(3);
 
-    console.info(`X: ${anchorX}; Y: ${anchorY}`);
+    // console.info(`X: ${anchorX}; Y: ${anchorY}`);
 
     if (
       (x < parseFloat(anchorX) + parseFloat(THRESHHOLD) &&

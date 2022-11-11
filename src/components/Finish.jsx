@@ -34,7 +34,9 @@ const Finish = ({time, restartGame}) => {
           <label htmlFor="name">Name:</label>
           <input type="text" name="name" id="name" ref={inputName} />
           <label htmlFor="time">Time:</label>
-          <input type="text" name="time" id="time" disabled value={time} />
+          <input type="text" name="time" id="time"
+            disabled
+            value={`${time} seconds`} />
           <button type='submit'>Submit</button>
           <button type='button' onClick={restartGame}>Restart</button>
         </form>
