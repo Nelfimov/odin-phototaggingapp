@@ -38,6 +38,7 @@ const App = () => {
   };
 
   const restartGame = () => {
+    setStart(false);
     setIsWin(false);
     setScore(0);
     setAnchor({x: 0, y: 0});
