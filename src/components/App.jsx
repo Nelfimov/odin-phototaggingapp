@@ -7,6 +7,7 @@ import {db} from '../Firebase';
 import {doc, getDoc} from '@firebase/firestore';
 import markIcon from '../images/mark.svg';
 import '../styles/App.css';
+import StartPage from './StartPage';
 
 const CHARACTERS_LIST = [
   {name: 'Waldo', status: false},
@@ -17,6 +18,7 @@ const CHARACTERS_LIST = [
 const THRESHHOLD = 0.08;
 
 const App = () => {
+  const [start, setStart] = useState(false);
   const [score, setScore] = useState(0);
   const [isWin, setIsWin] = useState(false);
   const [hidden, setHidden] = useState(true);
@@ -30,6 +32,10 @@ const App = () => {
   }, [score]);
 
   const incrementScore = () => setScore((prevState) => prevState + 1);
+
+  const startGame = () => {
+    setStart(true);
+  };
 
   const restartGame = () => {
     setIsWin(false);
@@ -72,7 +78,6 @@ const App = () => {
       incrementScore();
       CHARACTERS_LIST.map((item) =>
         item.name === characterName ? item.status = true : item);
-      notification.open('Great job, you found it!');
 
       const mark = document.createElement('img');
       mark.src = markIcon;
@@ -80,6 +85,10 @@ const App = () => {
       mark.setAttribute('style',
           `top: ${anchorY*100}%; left: ${anchorX*100}%; z-index: 7`);
       document.querySelector('div.GameContainer').append(mark);
+
+      if (score < 3) {
+        notification.open('Great job, you found it!');
+      }
     } else {
       notification.open('You missed, sorry!');
     };
@@ -87,18 +96,22 @@ const App = () => {
 
   return (
     <div className="App">
-      <Navbar score={score} getTime={getTime} isWin={isWin} />
-      {
-      isWin ?
-      <Finish time={finalTime} restartGame={restartGame} /> :
-       <GameContainer
-         handleClick={handleClick}
-         handleClickInContext={handleClickInContext}
-         incrementScore={incrementScore}
-         charactersList={CHARACTERS_LIST}
-         hidden={hidden}
-         anchor={anchor}
-       />
+      {!start ?
+        <StartPage start={startGame} /> :
+        <>
+          <Navbar score={score} getTime={getTime} isWin={isWin} />
+          {isWin ?
+            <Finish time={finalTime} restartGame={restartGame} /> :
+            <GameContainer
+              handleClick={handleClick}
+              handleClickInContext={handleClickInContext}
+              incrementScore={incrementScore}
+              charactersList={CHARACTERS_LIST}
+              hidden={hidden}
+              anchor={anchor}
+            />
+          }
+        </>
       }
     </div>
   );

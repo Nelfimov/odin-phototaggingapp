@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React, {useRef, useState, useEffect} from 'react';
+import React, {useRef, useState} from 'react';
 import propTypes from 'prop-types';
 import Leaderboard from './Leaderboard';
 import {db} from '../Firebase';
@@ -26,8 +25,13 @@ const Finish = ({time, restartGame}) => {
     <div className="Finish">
       {isSubmit ?
       <h2>Your record submitted, thank you for playing!</h2> :
-      <h2>You win! If you would like, you
-         can enter your name to save the record of {time} seconds!</h2>
+      <>
+        <h1>YOU WIN!</h1>
+        <h2>
+          If you would like, you can enter
+          your name to save the record of {time} seconds!
+        </h2>
+      </>
       }
       {!isSubmit &&
         <form onSubmit={submitHandle}>
