@@ -5,7 +5,7 @@ import {db} from '../Firebase';
 import {doc, updateDoc, arrayUnion} from '@firebase/firestore';
 import '../styles/Finish.css';
 
-const Finish = ({time, restartGame}) => {
+const Finish = ({time, restartGame, field}) => {
   const [isSubmit, setIsSubmit] = useState(false);
 
   const inputName = useRef();
@@ -17,6 +17,7 @@ const Finish = ({time, restartGame}) => {
       records: arrayUnion({
         name: inputName.current.value,
         time: time,
+        field,
       }),
     }).then(() => setIsSubmit(true));
   };
@@ -45,7 +46,7 @@ const Finish = ({time, restartGame}) => {
           <button type='button' onClick={restartGame}>Restart</button>
         </form>
       }
-      <Leaderboard isSubmit={isSubmit}/>
+      <Leaderboard isSubmit={isSubmit} field={field}/>
     </div>
   );
 };
@@ -53,6 +54,7 @@ const Finish = ({time, restartGame}) => {
 Finish.propTypes = {
   time: propTypes.number,
   restartGame: propTypes.func,
+  field: propTypes.string,
 };
 
 export default Finish;

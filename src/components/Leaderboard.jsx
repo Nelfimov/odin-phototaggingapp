@@ -5,13 +5,14 @@ import {db} from '../Firebase';
 import {doc, getDoc} from '@firebase/firestore';
 import propTypes from 'prop-types';
 
-const Leaderboard = ({isSubmit}) => {
+const Leaderboard = ({isSubmit, field}) => {
   const [recordsList, setRecordsList] = useState();
 
   useEffect(() => {
     getDoc(doc(db, 'records', 'records'))
         .then((result) =>
           setRecordsList(result.data().records
+              .filter((item) => item.field === field)
               .sort((a, b) => a.time - b.time),
           ),
         );
@@ -34,6 +35,7 @@ const Leaderboard = ({isSubmit}) => {
 
 Leaderboard.propTypes = {
   isSubmit: propTypes.bool,
+  field: propTypes.string,
 };
 
 export default Leaderboard;

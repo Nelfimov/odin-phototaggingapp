@@ -108,7 +108,11 @@ const App = () => {
         <>
           <Navbar score={score} getTime={getTime} isWin={isWin} />
           {isWin ?
-            <Finish time={finalTime} restartGame={restartGame} /> :
+            <Finish
+              time={finalTime}
+              restartGame={restartGame}
+              field={field}
+            /> :
             <GameContainer
               handleClick={handleClick}
               handleClickInContext={handleClickInContext}
