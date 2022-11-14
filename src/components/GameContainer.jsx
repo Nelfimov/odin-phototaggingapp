@@ -2,8 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import '../styles/GameContainer.css';
 import ContextContainer from './ContextContainer';
-import snowBackground from '../images/snow.jpg';
-import beachBackground from '../images/beach.jpg';
+import ProgressiveImage from './ProgressiveImage';
 
 /**
  * Container for gameboard with picture
@@ -17,20 +16,9 @@ const GameContainer = ({
   anchor,
   field,
 }) => {
-  let src;
-
-  if (field === 'snow') {
-    src = snowBackground;
-  } else {
-    src = beachBackground;
-  }
-
   return (
     <div className="GameContainer" onClick={handleClick}>
-      <img
-        src={src}
-        alt="background"
-        className="background" />
+      <ProgressiveImage field={field} />
       {hidden ?
        null :
         <ContextContainer

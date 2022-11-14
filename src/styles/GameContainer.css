@@ -2,11 +2,6 @@
   position: absolute;
 }
 
-.GameContainer img.background {
-  width: 100vw;
-  z-index: 0;
-}
-
 .GameContainer img.mark {
   position: absolute;
   width: 5%;

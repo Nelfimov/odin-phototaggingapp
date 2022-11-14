@@ -1,15 +1,18 @@
 {
   "files": {
-    "main.css": "/odin-phototaggingapp/static/css/main.f015002d.css",
-    "main.js": "/odin-phototaggingapp/static/js/main.4faa7684.js",
-    "static/media/1.jpg": "/odin-phototaggingapp/static/media/1.80afb2b7450c2ce06eba.jpg",
+    "main.css": "/odin-phototaggingapp/static/css/main.b1a5a620.css",
+    "main.js": "/odin-phototaggingapp/static/js/main.0723a2a9.js",
+    "static/media/beach.jpg": "/odin-phototaggingapp/static/media/beach.a6fa213ea7e4a3a0242d.jpg",
+    "static/media/snow.jpg": "/odin-phototaggingapp/static/media/snow.80afb2b7450c2ce06eba.jpg",
+    "static/media/snow.thumbnail.jpg": "/odin-phototaggingapp/static/media/snow.thumbnail.21c5b7b4fcd2d6d2c4b9.jpg",
+    "static/media/beach.thumbnail.jpg": "/odin-phototaggingapp/static/media/beach.thumbnail.2d330afa1402c3cab146.jpg",
     "index.html": "/odin-phototaggingapp/index.html",
     "static/media/mark.svg": "/odin-phototaggingapp/static/media/mark.1205147c3a2ccba636882d39c959b40b.svg",
-    "main.f015002d.css.map": "/odin-phototaggingapp/static/css/main.f015002d.css.map",
-    "main.4faa7684.js.map": "/odin-phototaggingapp/static/js/main.4faa7684.js.map"
+    "main.b1a5a620.css.map": "/odin-phototaggingapp/static/css/main.b1a5a620.css.map",
+    "main.0723a2a9.js.map": "/odin-phototaggingapp/static/js/main.0723a2a9.js.map"
   },
   "entrypoints": [
-    "static/css/main.f015002d.css",
-    "static/js/main.4faa7684.js"
+    "static/css/main.b1a5a620.css",
+    "static/js/main.0723a2a9.js"
   ]
 }

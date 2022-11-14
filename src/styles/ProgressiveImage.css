@@ -1,0 +1,13 @@
+.background {
+  width: 100vw;
+}
+
+.background.loading {
+  filter: blur(20px);
+  clip-path: inset(0);
+}
+
+.background.loaded {
+  filter: blur(0px);
+  transition: filter .5s linear;
+}
