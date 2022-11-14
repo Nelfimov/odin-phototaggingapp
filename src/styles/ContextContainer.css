@@ -8,11 +8,18 @@
   width: 100px;
   border-radius: 10px;
   border: 0.1px solid black;
-  box-shadow: 3px 3px 3px 3px grey;
+  box-shadow: 0 0 5px black;
+  animation: .1s forwards unhide linear;
 }
 
-.ContextContainer .hidden {
-  display: none;
+@keyframes unhide {
+  from {
+    filter: opacity(0);
+  }
+
+  to {
+    filter: opacity(100);
+  }
 }
 
 .ContextContainer ul {

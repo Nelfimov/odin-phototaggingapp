@@ -1,0 +1,65 @@
+.GameChoice {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.GameChoice h1 {
+  text-align: center;
+}
+
+.GameChoice>.choice {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.GameChoice>.choice>.snow,
+.GameChoice>.choice>.beach {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.GameChoice>.choice img {
+  width: 80%;
+  box-shadow: 0 0 5px black;
+  filter: grayscale(100);
+}
+
+.GameChoice>.choice img:hover {
+  animation: .3s linear normal select forwards;
+}
+
+@keyframes select {
+  from {
+    filter: grayscale(100);
+  }
+
+  to {
+    filter: grayscale(0);
+    transform: scale(1.05);
+  }
+}
+
+.GameChoice>.choice img {
+  width: 80%;
+  box-shadow: 0 0 5px black;
+}
+
+.GameChoice button {
+  background-color: rgb(96, 96, 189);
+  border-radius: 5px;
+  padding: 16px 54px;
+  color: white;
+  font-weight: bold;
+  border: transparent;
+}
+
+@media only screen and (max-width: 852px) {
+  .GameChoice>.choice {
+    display: flex;
+    flex-flow: column nowrap;
+  }
+}

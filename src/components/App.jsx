@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, {useCallback, useEffect, useState} from 'react';
 import Finish from './Finish';
 import GameContainer from './GameContainer';
@@ -7,12 +8,15 @@ import {db} from '../Firebase';
 import {doc, getDoc} from '@firebase/firestore';
 import markIcon from '../images/mark.svg';
 import '../styles/App.css';
-import StartPage from './StartPage';
+import GameChoice from './GameChoice';
 
 const CHARACTERS_LIST = [
-  {name: 'Waldo', status: false},
-  {name: 'Yeti', status: false},
-  {name: 'Wizard', status: false},
+  {name: 'Waldo', status: false, field: 'snow'},
+  {name: 'Wizard', status: false, field: 'snow'},
+  {name: 'Yeti', status: false, field: 'snow'},
+  {name: 'Waldo', status: false, field: 'beach'},
+  {name: 'Cowboy', status: false, field: 'beach'},
+  {name: 'Knight', status: false, field: 'beach'},
 ];
 
 const THRESHHOLD = 0.08;
@@ -24,6 +28,7 @@ const App = () => {
   const [hidden, setHidden] = useState(true);
   const [anchor, setAnchor] = useState({x: 0, y: 0});
   const [finalTime, setFinalTime] = useState();
+  const [field, setField] = useState();
 
   const notification = useNotification();
 
@@ -33,7 +38,8 @@ const App = () => {
 
   const incrementScore = () => setScore((prevState) => prevState + 1);
 
-  const startGame = () => {
+  const startGame = (e) => {
+    setField(e.target.id);
     setStart(true);
   };
 
@@ -55,7 +61,7 @@ const App = () => {
 
   const handleClickInContext = useCallback(async (e) => {
     const characterName = e.target.textContent;
-    const docRef = doc(db, 'coordinates', characterName);
+    const docRef = doc(db, 'coordinates', `${characterName}-${field}`);
     const docSnap = await getDoc(docRef);
 
     const {x, y} = docSnap.data();
@@ -98,7 +104,7 @@ const App = () => {
   return (
     <div className="App">
       {!start ?
-        <StartPage start={startGame} /> :
+        <GameChoice start={startGame} /> :
         <>
           <Navbar score={score} getTime={getTime} isWin={isWin} />
           {isWin ?
@@ -110,6 +116,7 @@ const App = () => {
               charactersList={CHARACTERS_LIST}
               hidden={hidden}
               anchor={anchor}
+              field={field}
             />
           }
         </>

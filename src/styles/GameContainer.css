@@ -11,4 +11,17 @@
   position: absolute;
   width: 5%;
   transform: translate(-50%, -50%);
+  animation: .3s forwards placeMark linear;
+}
+
+@keyframes placeMark {
+  from {
+    filter: opacity(0);
+    transform: scale(5) translate(-50%, -50%);
+  }
+
+  to {
+    filter: opacity(100);
+    transform: scale(1) translate(-50%, -50%);
+  }
 }
